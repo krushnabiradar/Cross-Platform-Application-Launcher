@@ -20,13 +20,6 @@ Steps:
 
 5) then created get apps route to get all the created apps.
 # http://localhost:2354/api/apps GET method
-{
-  "name": "Netflix",
-  "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-  "parameter": "netflix.com",
-  "iconUrl": "https://www.gstatic.com/webp/youtube/img/favicon_144.png"
-}
-
 
 6) then created launch route to launch app.
 # http://localhost:2354/api/apps POST method
