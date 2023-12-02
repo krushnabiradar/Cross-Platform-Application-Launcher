@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -9,28 +9,33 @@ const App = () => {
   const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:2354/api/apps')
-      .then(response => setApps(response.data))
-      .catch(error => console.error(error));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:2354/api/apps');
+        setApps(response.data);
+      } catch (error) {
+        console.error('Error fetching apps:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const launchApp = async (path, parameter) => {
     setLoading(true);
 
-    // Add a loading delay (e.g., 2 seconds) before launching the application
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Simulate a loading delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    axios.post('http://localhost:2354/api/launch', { path, parameter })
-      .then(response => {
-        console.log(response.data);
-        setLoading(false);
-        setSelectedApp(null);
-      })
-      .catch(error => {
-        console.error(error);
-        setLoading(false);
-        setSelectedApp(null);
-      });
+      const response = await axios.post('http://localhost:2354/api/launch', { path, parameter });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error launching app:', error);
+    } finally {
+      setLoading(false);
+      setSelectedApp(null);
+    }
   };
 
   const handleAppClick = async (app) => {
@@ -47,12 +52,11 @@ const App = () => {
   };
 
   const handleAddApp = (selectedFile) => {
-    // Handle adding the selected application to the server
-    // You might want to use FormData to send the file to the server
+    // Add logic for adding an app
   };
 
   const handleRemoveApp = (appId) => {
-    // Handle removing the application with the given appId from the server
+    // Add logic for removing an app
   };
 
   return (
@@ -64,12 +68,8 @@ const App = () => {
           <button onClick={handleHomeClick}>Home</button>
         </div>
       ) : showSettings ? (
-        // Render your Settings page here, including file selection, add, and remove functionality
-        // Don't forget to include a "Home" button to navigate back
-        // You can use conditional rendering or create a separate component for the Settings page
-        // Example: <Settings onAddApp={handleAddApp} onRemoveApp={handleRemoveApp} onHomeClick={handleHomeClick} />
         <div className="settings-page">
-          {/* Your Settings page UI goes here */}
+          
           <button onClick={handleHomeClick}>Home</button>
         </div>
       ) : (
@@ -88,4 +88,3 @@ const App = () => {
 };
 
 export default App;
-
