@@ -40,5 +40,6 @@ Steps:
 4) useEffect is used to fetch the list of apps when the component mounts. The fetchData function is an asynchronous function that makes a GET request to 'http://localhost:2354/api/apps' using Axios and sets the retrieved data to the app's state.
 5) useState is used to manage the component's state
 6) Added event handling and error handling.
+7) Added 2000ms delay which will show loading screen on the UI and then it will launch the app. 
 
 
