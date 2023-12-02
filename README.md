@@ -1,6 +1,6 @@
 # Cross-Platform-Application-Launcher
 
-# Part - 1
+# Part - 1 time spent ( 1-hour)
 
 Steps:
 
