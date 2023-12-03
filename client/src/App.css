@@ -61,4 +61,49 @@
       background-color: #2980b9;
     }
   }
+
+
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.settings-page h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.settings-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-page label {
+  margin: 10px 0;
+}
+
+.settings-page input {
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.settings-page button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settings-page button:hover {
+  background-color: #45a049;
+}
+
+
   
