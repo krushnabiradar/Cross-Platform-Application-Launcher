@@ -1,6 +1,6 @@
 # Cross-Platform-Application-Launcher
 
-# Part - 1 ==> time spent ( 1-hour)
+# Part - 1 ==> time spent (1 hour)
 
 Steps:
 
@@ -42,4 +42,8 @@ Steps:
 6) Added event handling and error handling.
 7) Added 2000ms delay which will show loading screen on the UI and then it will launch the app. 
 
+# Part III ==> Time spent ( 3 Hours )
+
+1) Add application form.
+2) you have to add the file path manually due to privacy.
 
