@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import SettingsForm from "./Settings";
 
 const App = () => {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
-  const [newAppName, setNewAppName] = useState("");
-  const [configFile, setConfigFile] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,41 +55,20 @@ const App = () => {
     setShowSettings(false);
   };
 
-  const handleAddApp = async () => {
+
+  const handleAddNewApp = async (newAppData) => {
     try {
-      if (!configFile) {
-        // Display an error message or prevent the submission
-        console.error("Please select a config file.");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("name", newAppName);
-      formData.append("configFile", configFile);
-
       const response = await axios.post(
         "http://localhost:2354/api/apps",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        newAppData
       );
-
-      // Update the apps state with the new app
       setApps((prevApps) => [...prevApps, response.data]);
-
-      // Clear the form inputs
-      setNewAppName("");
-      setConfigFile(null);
-
-      // Go back to home screen after adding an app
-      setShowSettings(false);
+      setShowSettings(false); // Hide the form after adding a new app
     } catch (error) {
-      console.error("Error adding app:", error);
+      console.error("Error adding new app:", error);
     }
   };
+
 
   const handleRemoveApp = async (event, appId) => {
     event.stopPropagation(); // Prevent the click event from propagating
@@ -105,12 +83,6 @@ const App = () => {
     }
   };
 
-  const handleFileChange = (event) => {
-    // Handle file input change
-    const file = event.target.files[0];
-    setConfigFile(file);
-  };
-
   return (
     <div className="app-container">
       <h1>{loading ? "Loading..." : ""}</h1>
@@ -122,23 +94,7 @@ const App = () => {
       ) : showSettings ? (
         <div className="settings-page">
           <h2>Add New App</h2>
-          <form>
-            <label>
-              Application Name:
-              <input
-                type="text"
-                value={newAppName}
-                onChange={(e) => setNewAppName(e.target.value)}
-              />
-            </label>
-            <label>
-              Config File:
-              <input type="file" onChange={handleFileChange} />
-            </label>
-            <button type="button" onClick={handleAddApp}>
-              Add App
-            </button>
-          </form>
+          <SettingsForm addNewApp={handleAddNewApp} />
           <button onClick={handleHomeClick}>Home</button>
         </div>
       ) : (
