@@ -45,5 +45,5 @@ Steps:
 # Part III ==> Time spent ( 3 Hours )
 
 1) Add application form.
-2) you have to add the file path manually due to privacy.
+
 
