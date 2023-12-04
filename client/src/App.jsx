@@ -85,38 +85,39 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>{loading ? "Loading..." : ""}</h1>
-      {loading ? (
-        <div className="loading-screen">
-          <p>Loading...</p>
-          <button onClick={handleHomeClick}>Home</button>
-        </div>
-      ) : showSettings ? (
-        <div className="settings-page">
-          <h2>Add New App</h2>
-          <SettingsForm addNewApp={handleAddNewApp} />
-          <button onClick={handleHomeClick}>Home</button>
-        </div>
-      ) : (
-        <div className="app-list">
-          <button onClick={handleSettingsClick}>Settings</button>
-          {apps.map((app) => (
-            <div
-              key={app._id}
-              className="app-item"
-              onClick={() => handleAppClick(app)}
-            >
-              <img src={app.iconUrl} alt={app.name} className="app-icon" />
-              <p className="app-name">{app.name}</p>
-              <button onClick={(event) => handleRemoveApp(event, app._id)}>
-                Remove
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* ... (existing code) */}
+      <div className="app-list">
+        {showSettings && (
+          <div className="settings-page">
+            <h2>Add New App</h2>
+            <SettingsForm addNewApp={handleAddNewApp} />
+            <button className="settings-button" onClick={handleHomeClick}>
+              Home
+            </button>
+          </div>
+        )}
+        {!showSettings && (
+          <>
+            <button className="settings-button" onClick={handleSettingsClick}>
+              Settings
+            </button>
+            {apps.map((app) => (
+              <div
+                key={app._id}
+                className="app-item"
+                onClick={() => handleAppClick(app)}
+              >
+                <img src={app.iconUrl} alt={app.name} className="app-icon" />
+                <p className="app-name">{app.name}</p>
+                <button onClick={(event) => handleRemoveApp(event, app._id)}>
+                  Remove
+                </button>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };
-
 export default App;

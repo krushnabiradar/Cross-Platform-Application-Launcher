@@ -6,13 +6,19 @@
   justify-content: center;
   min-height: 100vh;
   font-family: "Arial", sans-serif;
+  
+  @media (max-width: 600px) {
+    .settings-button {
+      display: none;
+    }
+  }
 }
 
 .app-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .app-item {
@@ -31,16 +37,16 @@
 }
 
 .app-icon {
-  width: 60px; 
-  height: 60px; 
+  width: 60px;
+  height: 60px;
   margin-bottom: 15px;
 }
 
 button {
-  padding: 12px; 
-  margin: 15px; 
+  padding: 12px;
+  margin: 15px;
   cursor: pointer;
-  font-size: 18px; 
+  font-size: 18px;
   border: none;
   border-radius: 5px;
   background-color: #3498db;
