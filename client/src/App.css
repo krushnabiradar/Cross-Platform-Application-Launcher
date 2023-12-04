@@ -1,24 +1,18 @@
-
+/* Base styles for larger screens */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   font-family: "Arial", sans-serif;
-}
-
-.loading-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .app-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 20px; 
+  padding: 20px; 
 }
 
 .app-item {
@@ -36,14 +30,12 @@
   }
 }
 
-
 .app-icon {
   width: 60px; 
   height: 60px; 
   margin-bottom: 15px;
 }
 
-/* Style the button */
 button {
   padding: 12px; 
   margin: 15px; 
@@ -57,5 +49,16 @@ button {
 
   &:hover {
     background-color: #2980b9;
+  }
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .app-item {
+    width: 100%; /* Make app-item full width on smaller screens */
+  }
+
+  .app-list {
+    padding: 10px; /* Adjust padding for better spacing on smaller screens */
   }
 }
